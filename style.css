@@ -1,0 +1,209 @@
+/* 
+    Created on : Mar 3, 2017, 10:51:33 AM
+    Author     : rjones52
+*/
+@font-face {
+  font-family: "D7MBI";
+  src: url("./fonts/DSEG/fonts/DSEG7-Modern/DSEG7Modern-BoldItalic.woff") format('woff');
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 50px;
+}
+
+/*Gameboard controls*/
+#gameBoard {
+    line-height: 0px;
+    font-size: 0px;
+    /*margin: 25px auto;*/
+    margin: 0 0 0 0;
+    margin: 0 auto;
+    margin-top: 6px;
+
+    /*border controls*/
+    border-top: 3px solid #a0a0a0;
+    border-left: 3px solid #a0a0a0;
+    border-right: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+    box-sizing: content-box;
+}
+#wholeGame {
+    border: 6px solid #c3c3c3;
+    box-sizing: content-box;
+    box-shadow:0px 0px 5px 1px rgba(0,0,0,0.68);
+    padding:0;
+    margin: 0 auto;
+    background-color: #c3c3c3;
+
+    user-select: none;/*disable text highlight*/
+    cursor: default; /* disable cursor change*/
+}
+
+/* load sprite sheet and tile size/position*/
+.tile {
+	background-image: url(sprite.png);
+    height:18px;
+    width:18px;
+    border: white solid 1px;
+    background-position: 0 -20px;
+    border:0;
+    display: inline-block;
+    color:white;
+    text-align: center;
+}
+
+/*Positions of pictures on the sprite sheet*/
+.pressed {
+    background-position: 0 0;
+}
+.show0 {
+    background-position: 0 0;
+}
+.show1 {
+    background-position: -20px 0;
+}
+.show2 {
+    background-position: -40px 0;
+}
+.show3 {
+    background-position: -60px 0;
+}
+.show4 {
+    background-position: -80px 0;
+}
+.show5 {
+    background-position: -100px 0;
+}
+.show6 {
+    background-position: -120px 0;
+}
+.show7 {
+    background-position: -140px 0;
+}
+.show8 {
+    background-position: -160px 0;
+}
+
+.bomb {
+	/*flag*/
+    background-position: -80px -20px;
+}
+.flag {
+    background-position: -20px -20px;
+}
+.flagPress { /*same tile as normal flag. I dont like the look of a pressed flag button */
+    background-position: -20px -20px;
+}
+.killer {
+    background-position: -60px -20px;
+}
+.badGuess {
+    background-position: -100px -20px;
+}
+.guess {
+    background-position: -120px -20px;
+}
+.guessPress {
+    background-position: -140px -20px;
+}
+
+
+#scoreWrapper {
+    float: left;
+    margin:4px 0 4px 4px;
+}
+
+#secondsWrapper {
+    float: right;
+    margin:4px 4px 4px 0;
+}
+
+#secondsWrapper, #scoreWrapper {
+    background-color: black;
+    font-family: "D7MBI";
+    /*margin: 0 auto;*/
+    width:97px;
+    height:26px;
+    /*user-select: none;
+    cursor: default;*/
+    
+    color: rgba(255,0,0,0.35);
+    position: relative;
+    display: inline-block;
+    /*border: 1px solid black;*/
+    width: auto;
+    /*margin:4px auto;*/
+}
+
+#seconds, #score {
+    position: absolute;
+    right: 0px;
+    color: red;
+}
+
+#gameHeader {
+    /*border:2px solid #a0a0a0;*/
+    border-top: 3px solid #a0a0a0;
+    border-left: 3px solid #a0a0a0;
+    border-right: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+    box-sizing: border-box;
+    margin:1px auto;
+}
+
+#newGame {
+	background-image: url(sprite.png);
+    width:26px;
+    height:26px;
+    display: inline-block;
+    margin: 4px 2px -3px 2px;
+    right:1px;
+    background-position: 0px -40px;
+}
+
+.radio-inline{
+    width:100%;
+    text-align:left;
+}
+
+.rdo {
+    visibility:hidden;
+}
+
+.gameOptions {
+    margin:5px;
+}
+
+#helpMenu {
+    margin-left: 10px;
+}
+
+.emptyLabel {
+    color: rgba(0,0,0,0);
+}
+
+#diffEasy, #diffMedium, #diffHard {
+    padding: 0 35px;
+}
+
+#width, #height, #mines {
+    width:50px;
+    margin: 0px 10px;
+}
+
+.footer {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 50px;
+  background-color: #eee;
+  padding:15px;
+  color: #fff;
+}
