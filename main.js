@@ -584,6 +584,20 @@ function cleanTiles(x, y){
  * Reveal entire board when win condition is met
  */
 function winGame(){
+    var bombsFound = width * height;
+    for(var y = 0; y < height; ++y) {
+        for (var x = 0; x < width; ++x) {
+            if (boardArray[y][x].isRevealed)
+                bombsFound--;
+        }
+    }
+
+    if(bombsFound != maxBombs)
+    {
+        alert("Quit trying to cheat! ;)");
+        return;
+    }
+
     // stop playing. You won!
     playing = false;
     paused = true;

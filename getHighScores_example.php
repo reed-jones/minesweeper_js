@@ -9,10 +9,10 @@ require("../connect.php");
 		<h4>Easy</h4>
 		<hr>
 		<div class="row">
-			<div class="col-xs-6">
+			<div class="col-xs-6 col-md-6">
 				<h4>Name</h4>
 			</div>
-			<div class="col-xs-6">
+			<div class="col-xs-6 col-md-6">
 				<h4>Time</h4>
 			</div>
 			
@@ -25,10 +25,10 @@ require("../connect.php");
 
 		while ($row = pg_fetch_array($result)) { ?>
 		<div class="row">
-			<div class="col-xs-6">
+			<div class="col-xs-6 col-md-6">
 				<?php echo $row['name']; ?>
 			</div>
-			<div class="col-xs-6">
+			<div class="col-xs-6 col-md-6">
 				<?php echo $row['time']; ?>
 			</div>
 		</div>
@@ -40,10 +40,10 @@ require("../connect.php");
 		<h4>Medium</h4>
 		<hr>
 		<div class="row">
-		<div class="col-xs-6">
+		<div class="col-xs-6 col-md-6">
 			<h4>Name</h4>
 		</div>
-		<div class="col-xs-6">
+		<div class="col-xs-6 col-md-6">
 			<h4>Time</h4>
 		</div>
 		
@@ -52,10 +52,10 @@ require("../connect.php");
 		while ($row = pg_fetch_array($result)) { ?>
 
 		<div class="row">
-			<div class="col-xs-6">
+			<div class="col-xs-6 col-md-6">
 				<?php echo $row['name']; ?>
 			</div>
-			<div class="col-xs-6">
+			<div class="col-xs-6 col-md-6">
 				<?php echo $row['time']; ?>
 			</div>
 		</div>
@@ -66,10 +66,10 @@ require("../connect.php");
 		<h4>Hard</h4>
 		<hr>
 		<div class="row">
-		<div class="col-xs-6">
+		<div class="col-xs-6 col-md-6">
 			<h4>Name</h4>
 		</div>
-		<div class="col-xs-6">
+		<div class="col-xs-6 col-md-6">
 			<h4>Time</h4>
 		</div>
 
@@ -77,10 +77,10 @@ require("../connect.php");
 <?php $result = pg_query($con, "SELECT name, time FROM _Table_ WHERE difficulty = 2 ORDER BY time, id LIMIT 10"); 
 		while ($row = pg_fetch_array($result)) { ?>
 		<div class="row">
-			<div class="col-xs-6">
+			<div class="col-xs-6 col-md-6">
 				<?php echo $row['name']; ?>
 			</div>
-			<div class="col-xs-6">
+			<div class="col-xs-6 col-md-6">
 				<?php echo $row['time']; ?>
 			</div>
 		</div>
