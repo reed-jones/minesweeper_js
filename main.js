@@ -170,7 +170,10 @@ function newGame() {
     document.getElementById("gameHeader").style.width = (width * 18) + 6 + 'px';
 
     document.getElementById("newGame").style.backgroundPosition = "0px -40px";
-    
+    // equation of a line
+    document.getElementById("newGame").style.marginLeft = 0.48177*(width*18)-73 + 'px';
+    // 30 tiles = 190px
+    // 16 tiles = 60px
     // tile size = 18px
     document.getElementById("wholeGame").style.width = (width * 18) + 6 + 'px';
     // board.style.height = height * 18 + 'px';

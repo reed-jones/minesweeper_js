@@ -1,10 +1,6 @@
-	// all new folders get this default behavior
-	//document.getElementsByName("newFolder").forEach(function(folder) {folder.onclick = newFolder});
-//window.onload = function() {
-	document.getElementById("titleBar").onmousedown = startDrag;
-	document.getElementById("instructions").onmousedown = startDrag;
-	document.getElementsByName("newFolder").forEach(function(folder) {folder.onmousedown = startDrag});
-//};
+document.getElementById("titleBar").onmousedown = startDrag;
+document.getElementById("instructions").onmousedown = startDrag;
+document.getElementsByName("newFolder").forEach(function(folder) {folder.onmousedown = startDrag});
 
 var clickX = 0;
 var clickY = 0;
@@ -12,7 +8,6 @@ var drag = false;
 
 
 function startDrag(e) {
-	console.log('click');
 	clickX = e.screenX;
 	clickY = e.screenY;
 	drag = true;
