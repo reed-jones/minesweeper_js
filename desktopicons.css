@@ -1,0 +1,128 @@
+/*********************************** folder icons *************************************/
+/* Folder Text */
+.folder span {
+	position: absolute;
+	top: 60px; /*location*/
+	left: -7px;
+	width:100px;
+	white-space: nowrap;
+	overflow:hidden;
+	text-overflow: ellipsis;
+	color: #fff;
+	text-shadow: 2px 2px 2px #333;
+	text-align: center;
+}
+/* Back Flap of Folder */
+.folder{
+	width: 85px;
+	height: 55px;
+	background: #ffd480;
+	position: absolute;
+	border-top-right-radius: 5px;
+	cursor: pointer;
+}
+/* Folder Top Tab */
+.folder::before{
+	width: 20px;
+	height: 15px;
+	content: '';
+	background: #ffd480;
+	position: absolute;
+	top: -5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+/* Folder Front Flap */
+.folder::after{
+	width: 85px;
+	height: 50px;
+	content: '';
+	background: #ffcb66;
+	position: absolute;
+	top: 5px;
+	box-shadow: 0 0 20px 2px rgba(64, 53, 32, 0.5); /*toned down colour of folder*/
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	/*-webkit-transition: all 400ms ease;*/
+	transition: all 400ms ease;
+}
+
+/* Hover Effects */
+.folder:hover::after{
+	-webkit-transform:translate(4px, 7px) rotateX(-45deg) skew(-10deg, 0deg);
+	transform: translate(4px, 7px) rotateX(-45deg) skew(-10deg, 0deg);
+}
+
+/**************** Document Icons ********************/
+ .document span{
+	position: absolute;
+	top: 60px; /*location*/
+	left: -7px;
+	width:100px;
+	white-space: nowrap;
+	overflow:hidden;
+	text-overflow: ellipsis;
+	color: #fff;
+	text-shadow: 2px 2px 2px #333;
+	text-align: center;
+  	margin-left:-17.5px;
+  	margin-top:15px;
+}
+
+.document{
+	width: 55px;
+	height: 75px;
+	position: absolute;
+	margin-top: -15px;
+	background-color: #ddd;
+	margin-left:17.5px;
+	border-radius: 2px;
+	cursor: pointer;
+	background: repeating-linear-gradient(0deg, #fff, #fff 3px, rgba(100,100,100, 1) 1px, rgba(100,100,100,1) 4px);
+	box-shadow: -3px 3px 10px 2px rgba(64, 53, 32, 0.5); /*toned down colour of folder*/
+}
+
+
+.document::before{
+	content:'';
+	width: 55px;
+	height: 75px;
+	position: absolute;
+	margin-top: -15px;
+	background-color: #ddd;
+	margin-left:17.5px;
+	border-radius: 2px;
+	left:-25px;
+	top:12px;
+	cursor: pointer;
+
+	background: repeating-linear-gradient(0deg, #fff, #fff 3px, rgba(100,100,100, 1) 1px, rgba(100,100,100,1) 4px);
+	box-shadow: -3px 3px 10px 2px rgba(64, 53, 32, 0.5); /*toned down colour of folder*/
+	filter: blur(0.1px);
+	transform: rotateZ(-15deg);
+	z-index: -1;
+
+}
+
+.document::after{
+	content: '';
+	position: absolute;
+
+	width: 0;
+	height: 0;
+	top:0;
+	right:0;
+
+	background-image: linear-gradient(30deg, #aaa 0%, #aaa 30%, #396DA6 31%, #396DA6 100%);
+	-webkit-transition: all 400ms ease;
+	transition: all 400ms ease;
+}
+
+.document:hover::after{
+	top: -14px;
+	right: -11px;
+	width:35px;
+	height: 35px;
+	box-shadow: -1px 10px 2px -5px rgba(0,0,0,0.25);
+	transform: translate(8px, 5px) rotateZ(30deg) skew(-10deg, 0deg);
+}

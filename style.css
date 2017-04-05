@@ -3,17 +3,18 @@
     Author     : rjones52
 */
 @font-face {
-  font-family: "D7MBI";
-  src: url("./fonts/DSEG/fonts/DSEG7-Modern/DSEG7Modern-BoldItalic.woff") format('woff');
+    font-family: "D7MBI";
+    src: url("./fonts/DSEG/fonts/DSEG7-Modern/DSEG7Modern-BoldItalic.woff") format('woff');
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 50px;
+    margin-bottom: 50px;
+    background-color: #396DA6;
 }
 
 /*Gameboard controls*/
@@ -39,7 +40,9 @@ body {
     padding:0;
     margin: 0 auto;
     background-color: #c3c3c3;
-
+    position:absolute;
+    left:100px;
+    top:100px;
     user-select: none;/*disable text highlight*/
     cursor: default; /* disable cursor change*/
 }
@@ -210,4 +213,9 @@ body {
 
 .times {
     font-size: 0.8em;
+}
+
+
+/********* icons *****************/
+body {
 }

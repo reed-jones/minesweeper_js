@@ -2,12 +2,12 @@
 <html>
     <head>
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <script>
+     <!--    <script>
         (adsbygoogle = window.adsbygoogle || []).push({
             google_ad_client: "ca-pub-6760635046785236",
             enable_page_level_ads: true
         });
-        </script>
+        </script> -->
         <title>Play Minesweeper Online!</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +19,7 @@
         <link rel="alternate" href="https://minesweeper.zone/" hreflang="x-default" />
         <link rel="canonical" href="https://minesweeper.zone"/>
         <meta name="description" content="A re-creation of the classic game Minesweeper written in Javascript." />
-        <meta name="keywords" content="minesweeperzone, minesweeper.zone, minesweeper, mines, strategy, strategy games, logic, logic games, web games, javascript games">
+        <meta name="keywords" content="minesweeperzone, minesweeper.zone, minesweeper, mines, strategy, strategy games, logic, logic games, web games, javascript games, desktop">
 
         <!-- Bootstrap -->
         <link
@@ -30,6 +30,7 @@
 
         <!-- My CSS -->
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="desktopicons.css">
         <link rel="stylesheet" href="contextMenu/contextMenu.min.css">
 
         <!-- Google Analytics -->
@@ -46,43 +47,45 @@
     </head>
 
     <body>
-        <div class="container">
-            <div class="jumbotron text-center">
-                <div>
-                    <h1>Minesweeper</h1>
-                    <hr>
-                </div>
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <div id="wholeGame">
-                            <div class="text-left">
-                                <span id="gameMenu">Game</span>
-                                <span id="helpMenu">Help</span>
-                                <div id="custDiff" class="gameOptions collapse">
-                                    <span>Width:</span>
-                                    <input id="width" type="number" min="9" placeholder="9">
-                                    <span>Height:</span>
-                                    <input id="height" type="number" min="1" placeholder="1">
-                                    <span>Mines:</span>
-                                    <input id="mines" type="number" min="1" placeholder="1">
-                                    <button id="custDiffBtn">OK</button>
-                                </div>
-                            </div>
-                            <div id="gameHeader">   
-                                <h3 id="scoreWrapper">888<span id="score">000</span></h3>
-                                <div id="newGame"></div>
-                                <h3 id="secondsWrapper">888<span id="seconds">000</span></h3><br>
-                            </div>
-                            <div id="gameBoard" ondragstart="return false;"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div id="highScores"></div>
-                    </div>
+        <!-- Desktop Icons -->
+    <div class="folder" name="newFolder" style="top:75px; left:100px;">
+        <span>Travel Photos</span>
+    </div>
 
+    <div class="document" id="instructions" style="top:200px; left:125px;">
+        <span>instructions.txt</span>
+    </div>
+
+    <div class="folder" name="newFolder" style="top:225px; left:325px;">
+        <span>New Folder</span>
+    </div>
+
+    <div class="folder" name="newFolder" style="top:325px; left:100px;">
+        <span>New Folder (1)</span>
+    </div>
+            <div id="wholeGame" style="left:375px; top:150px;">
+                <div class="text-left" id="titleBar">
+                    <span id="gameMenu">Game</span>
+                    <span id="helpMenu">Help</span>
+                    <div id="custDiff" class="gameOptions collapse">
+                        <span>Width:</span>
+                        <input id="width" type="number" min="9" placeholder="9">
+                        <span>Height:</span>
+                        <input id="height" type="number" min="1" placeholder="1">
+                        <span>Mines:</span>
+                        <input id="mines" type="number" min="1" placeholder="1">
+                        <button id="custDiffBtn">OK</button>
+                    </div>
                 </div>
+                <div id="gameHeader">   
+                    <h3 id="scoreWrapper">888<span id="score">000</span></h3>
+                    <div id="newGame"></div>
+                    <h3 id="secondsWrapper">888<span id="seconds">000</span></h3><br>
+                </div>
+                <div id="gameBoard" ondragstart="return false;"></div>
             </div>
-        </div>
+            <div id="highScores"></div>
+         
 
         <div class="footer">
             <div class="container">
@@ -106,6 +109,7 @@
 
         <!-- My JS -->
         <script src="main.min.js"></script>
-        <!-- <script src="main.js"></script> -->
+        <script src="move.js"></script>
+        <script src="desktop.js"></script>
     </body>
 </html>
