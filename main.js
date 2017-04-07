@@ -144,7 +144,7 @@ function newGame() {
 
 
         // pull latest scoreboard incase someone beat you while you werent looking
-    getScores();
+    //getScores();
     // get the desired difficulty
 
     // start playing
@@ -744,7 +744,7 @@ function myTimer(){
 
 /**
  * retrieve latest list of high scores and update table
- */
+ *//*
 function getScores() {
     $.get("getHighScores.php", function(data) {
         document.getElementById("highScores").innerHTML = data;
@@ -772,10 +772,10 @@ function getScores() {
                 break;
         }
     });
-
-
-    
 }
+*/ 
+
+
 
 /**
  * posts score to database after win
@@ -789,7 +789,7 @@ function postScore(name, time, difficulty) {
         t: time,
         d: difficulty
     });
-    setTimeout(getScores, 500);
+    //setTimeout(getScores, 500);
 }
 
 /**
