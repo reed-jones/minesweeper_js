@@ -15,6 +15,9 @@ body {
   /* Margin bottom by footer height */
     margin-bottom: 50px;
     background-color: #396DA6;
+    
+    user-select: none;/*disable text highlight*/
+    cursor: default; /* disable cursor change*/
 }
 
 /*Gameboard controls*/
@@ -43,8 +46,7 @@ body {
     position:absolute;
     left:100px;
     top:100px;
-    user-select: none;/*disable text highlight*/
-    cursor: default; /* disable cursor change*/
+    z-index: 100;
 }
 
 /* load sprite sheet and tile size/position*/

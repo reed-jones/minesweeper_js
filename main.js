@@ -890,3 +890,8 @@ var helpMenu = [{
 $('#helpMenu').contextMenu(helpMenu);
 /********************** End Of Menus *********************************/
 
+$(function() {
+  $("#instructions").draggable();
+  $('[name="newFolder"]').draggable();
+  $("#wholeGame").draggable({ handle: "#titleBar" });
+});

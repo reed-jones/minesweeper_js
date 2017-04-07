@@ -47,14 +47,14 @@
     </head>
 
     <body>
+    <div class="document" id="instructions" style="top:200px; left:125px;">
+        <span>instructions.txt</span>
+    </div>
         <!-- Desktop Icons -->
     <div class="folder" name="newFolder" style="top:75px; left:100px;">
         <span>Travel Photos</span>
     </div>
 
-    <div class="document" id="instructions" style="top:200px; left:125px;">
-        <span>instructions.txt</span>
-    </div>
 
     <div class="folder" name="newFolder" style="top:225px; left:325px;">
         <span>New Folder</span>
@@ -82,9 +82,9 @@
                     <div id="newGame"></div>
                     <h3 id="secondsWrapper">888<span id="seconds">000</span></h3><br>
                 </div>
-                <div id="gameBoard" ondragstart="return false;"></div>
+                <div id="gameBoard"></div>
             </div>
-            <div id="highScores"></div>
+            <!-- <div id="highScores"></div> -->
          
 
         <div class="footer">
@@ -98,6 +98,10 @@
             src="https://code.jquery.com/jquery-3.1.1.min.js"
             integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous"></script>
+        <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
 
         <!-- BootStrap -->
         <script
