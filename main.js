@@ -144,7 +144,7 @@ function newGame() {
 
 
         // pull latest scoreboard incase someone beat you while you werent looking
-    //getScores();
+    getScores();
     // get the desired difficulty
 
     // start playing
@@ -744,37 +744,35 @@ function myTimer(){
 
 /**
  * retrieve latest list of high scores and update table
- *//*
+ */
 function getScores() {
-    $.get("getHighScores.php", function(data) {
-        document.getElementById("highScores").innerHTML = data;
-
+    $.getJSON("getJSONHighScores.php", function(data) {
         switch(difficulty){
             case 0:
-                document.getElementById("diffEasy").style.display = "block";
-                document.getElementById("diffMedium").style.display = "none";
-                document.getElementById("diffHard").style.display = "none";
+                var dif = data.highscores.easy;
+                updatePostIt("Easy", dif);
                 break;
             case 1:
-                document.getElementById("diffEasy").style.display = "none";
-                document.getElementById("diffMedium").style.display = "block";
-                document.getElementById("diffHard").style.display = "none";
+                var dif = data.highscores.medium;
+                updatePostIt("Medium", dif);
                 break;
             case 2:
-                document.getElementById("diffEasy").style.display = "none";
-                document.getElementById("diffMedium").style.display = "none";
-                document.getElementById("diffHard").style.display = "block";
+                var dif = data.highscores.hard;
+                updatePostIt("Hard", dif);
                 break;
             case 3:
-                document.getElementById("diffEasy").style.display = "none";
-                document.getElementById("diffMedium").style.display = "none";
-                document.getElementById("diffHard").style.display = "none";
                 break;
         }
     });
 }
-*/ 
-
+ 
+function updatePostIt(title, dif){
+    var hs = title + "<br>";
+    $.each(dif, function(i, field){
+                hs +=field.Name + " ~ " + field.Time + " seconds<br>";
+            });
+    $('#highScores').html(hs);
+}
 
 
 /**
@@ -789,7 +787,7 @@ function postScore(name, time, difficulty) {
         t: time,
         d: difficulty
     });
-    //setTimeout(getScores, 500);
+    setTimeout(getScores, 500);
 }
 
 /**
@@ -882,7 +880,7 @@ var helpMenu = [{
         // img: 'images/create.png',
         title: 'About',
         fun: function () {
-            // alert();
+            $('#instructionsModal').modal('show')  
         }
     }];
      
@@ -894,4 +892,5 @@ $(function() {
   $("#instructions").draggable();
   $('[name="newFolder"]').draggable();
   $("#wholeGame").draggable({ handle: "#titleBar" });
+  $('#post-it').draggable();
 });

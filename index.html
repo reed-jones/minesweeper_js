@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-     <!--    <script>
+        <!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+         <script>
         (adsbygoogle = window.adsbygoogle || []).push({
             google_ad_client: "ca-pub-6760635046785236",
             enable_page_level_ads: true
@@ -47,45 +47,73 @@
     </head>
 
     <body>
-    <div class="document" id="instructions" style="top:200px; left:125px;">
-        <span>instructions.txt</span>
-    </div>
-        <!-- Desktop Icons -->
-    <div class="folder" name="newFolder" style="top:75px; left:100px;">
-        <span>Travel Photos</span>
-    </div>
+            <!-- Desktop Icons -->
+        <div class="folder" name="newFolder" style="top:75px; left:100px;">
+            <span>New Folder</span>
+        </div>
 
+        <div class="document" id="instructions" style="top:200px; left:75px;"  data-toggle="modal" data-target="#instructionsModal">
+            <span>instructions.txt</span>
+        </div>
 
-    <div class="folder" name="newFolder" style="top:225px; left:325px;">
-        <span>New Folder</span>
-    </div>
+        <div class="folder" name="newFolder" style="top:325px; left:125px;">
+            <span>New Folder (1)</span>
+        </div>
 
-    <div class="folder" name="newFolder" style="top:325px; left:100px;">
-        <span>New Folder (1)</span>
-    </div>
-            <div id="wholeGame" style="left:375px; top:150px;">
-                <div class="text-left" id="titleBar">
-                    <span id="gameMenu">Game</span>
-                    <span id="helpMenu">Help</span>
-                    <div id="custDiff" class="gameOptions collapse">
-                        <span>Width:</span>
-                        <input id="width" type="number" min="9" placeholder="9">
-                        <span>Height:</span>
-                        <input id="height" type="number" min="1" placeholder="1">
-                        <span>Mines:</span>
-                        <input id="mines" type="number" min="1" placeholder="1">
-                        <button id="custDiffBtn">OK</button>
-                    </div>
+        <div class="folder" name="newFolder" style="top:450px; left:100px;">
+            <span>New Folder (2)</span>
+        </div>
+
+        <div class="post-it-note" id="post-it" style="top:75px; left:685px;">
+            <div id="highScores"></div> 
+        </div>
+
+        <div id="wholeGame" style="left:175px; top:175px;">
+            <div class="text-left" id="titleBar">
+                <span id="gameMenu">Game</span>
+                <span id="helpMenu">Help</span>
+                <div id="custDiff" class="gameOptions collapse">
+                    <span>Width:</span>
+                    <input id="width" type="number" min="9" placeholder="9">
+                    <span>Height:</span>
+                    <input id="height" type="number" min="1" placeholder="1">
+                    <span>Mines:</span>
+                    <input id="mines" type="number" min="1" placeholder="1">
+                    <button id="custDiffBtn">OK</button>
                 </div>
-                <div id="gameHeader">   
-                    <h3 id="scoreWrapper">888<span id="score">000</span></h3>
-                    <div id="newGame"></div>
-                    <h3 id="secondsWrapper">888<span id="seconds">000</span></h3><br>
-                </div>
-                <div id="gameBoard"></div>
             </div>
-            <!-- <div id="highScores"></div> -->
-         
+            <div id="gameHeader">   
+                <h3 id="scoreWrapper">888<span id="score">000</span></h3>
+                <div id="newGame"></div>
+                <h3 id="secondsWrapper">888<span id="seconds">000</span></h3><br>
+            </div>
+            <div id="gameBoard"></div>
+        </div>
+
+        <div id="instructionsModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">How To Play Minesweeper!</h4>
+                </div>
+                <div class="modal-body">
+                    <p>The objective of minesweeper is to locate all of the mines as quickly as possible. This is done by clearing all non-mine tiles. If you suspect a tile of being a mine, you can mark it by right clicking to plant a flag. Right clicking again, will replace it with a question mark, and a third right click will return the tile to its original state.
+                    Left clicking will open a tile, revealing what type of tile it is. Tiles may be either:</p>
+                        <ul>
+                            <li>A Mine (this ends the game)</li>
+                            <li>A Number</li>
+                            <li>Empty</li>
+                        </ul>
+                    <p>If a mine is revealed, you lose. If the tile you cleared is empty, the board will open up until it reaches number tiles in every direction. These "numbered tiles" indicate the number of mines adjacent to that specific tile and range from 1 to 8. The number of remaining mines are indicated by the numbers on the top left of the board. The top right is the timer and indicates how many seconds you have been working on this puzzle, but don't wory about that until you start getting the hang if the game! When you first load the page, the game defaults to hard mode, Under the game options, you will find medium, and easy. These levels scale both the size of the board, and the number of mines to be found. Hard is a 16 x 30 board with 99 mines. Medium is a 16 x 16 board with 40 mines. Easy is a 9 x 9 board with 10 mines and is a great place for beginners to start.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+        </div>
+
 
         <div class="footer">
             <div class="container">
@@ -113,6 +141,6 @@
 
         <!-- My JS -->
         <script src="main.js"></script>
-        <script src="desktop.js"></script>
+        <!-- <script src="desktop.js"></script> -->
     </body>
 </html>

@@ -126,3 +126,52 @@
 	box-shadow: -1px 10px 2px -5px rgba(0,0,0,0.25);
 	transform: translate(8px, 5px) rotateZ(30deg) skew(-10deg, 0deg);
 }
+
+/*************** POST IT *************************************/
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+
+.post-it-note {
+	font-family: 'Indie Flower', cursive;
+	/*padding: 2em;*/
+	background: #ffd707;
+	position: absolute;
+	height: 15em;
+	width:250px;
+}
+#highScores {
+	overflow: scroll;
+	padding:25px;
+	height: 210px;
+	width:250px;
+	overflow-x:hidden;
+	font-family: 'Indie Flower', cursive;
+	text-align: center;
+}
+
+.post-it-note:after {
+	content: "High Scores";
+	text-align: center;
+	font-size: 18px;
+	position: absolute;
+	padding-top: 1em;
+	top: -1.5em;
+	width: 223px;
+	/*min-height:4em;*/
+	left: 0;
+	right: 2em;
+	border-width: 0;
+	border-style: solid;
+	background-color: #ffd707;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.post-it-note:before {
+	content: "";
+	position: absolute;
+	top: -27px;
+	right: 0;
+	border-width: 0 2em 2em 0;
+	border-style: solid;
+	border-color: #d3b100 transparent;
+}

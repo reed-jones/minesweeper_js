@@ -1,5 +1,6 @@
 addHighScores.php
 getHighScores.php
+getJSONHighScores.php
 connect.php
 sitemap.xml
 robots.txt
