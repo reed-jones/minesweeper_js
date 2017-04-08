@@ -67,6 +67,7 @@
 	text-align: center;
   	margin-left:-17.5px;
   	margin-top:15px;
+  	z-index:-1; /*hides corner animation*/
 }
 
 .document{
