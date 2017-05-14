@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# game: http://ogp.me/ns/game#">
     <head>
         <!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
          <script>
@@ -12,14 +12,22 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <meta property="og:image" content="https://minesweeper.zone/minesweeper.jpg" />
+        <meta property="og:url" content="https://minesweeper.zone" />
+        <meta property="og:type" content="game" /> 
+		<meta property="og:title" content="Minesweeper.Zone" />
+		<meta property="og:description" content="Play the classic Windows game Minesweeper online. Open-source and written in JavaScript. Complete with High Scores!" />
+
+		<meta property="fb:app_id" content="1034112580021649"/>
+
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="icon" href="favicon.ico" type="image/x-icon">
 
         <link rel="alternate" href="https://minesweeper.zone/" hreflang="en" />
         <link rel="alternate" href="https://minesweeper.zone/" hreflang="x-default" />
         <link rel="canonical" href="https://minesweeper.zone"/>
-        <meta name="description" content="A re-creation of the classic game Minesweeper written in Javascript." />
-        <meta name="keywords" content="minesweeperzone, minesweeper.zone, minesweeper, mines, strategy, strategy games, logic, logic games, web games, javascript games, desktop">
+        <meta name="description" content="Play the classic Windows game Minesweeper online. Open-source and written in JavaScript. Complete with High Scores!" />
+        <meta name="keywords" content="minesweeperzone, minesweeper.zone, minesweeper, mines, strategy, strategy games, logic, logic games, web games, javascript games, desktop, mine game, minesweeper online, play minesweeper, minesweeper free, windows minesweeper">
 
         <!-- Bootstrap -->
         <link
@@ -39,16 +47,14 @@
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
             ga('create', 'UA-96016173-1', 'auto');
             ga('send', 'pageview');
-
         </script>
     </head>
 
     <body>
         <a class="github-ribbon" href="https://github.com/reed-jones/minesweeper_js" title="Fork me on GitHub">Fork me on GitHub</a>
-        
+
             <!-- Desktop Icons -->
         <div class="folder" name="newFolder" style="top:75px; left:100px;">
             <span>New Folder</span>
@@ -56,6 +62,18 @@
 
         <div class="document" id="instructions" style="top:200px; left:75px;"  data-toggle="modal" data-target="#instructionsModal">
             <span>instructions.txt</span>
+        </div>
+
+        <div class="notepad" data-title="Instructions.txt - Notpad.exe">
+            <span class="notepad-title">Instructions.txt - Notepad.exe</span>
+            <span class="notepad-text"><p>The objective of minesweeper is to locate all of the mines as quickly as possible. This is done by clearing all non-mine tiles. If you suspect a tile of being a mine, you can mark it by right clicking to plant a flag. Right clicking again, will replace it with a question mark, and a third right click will return the tile to its original state.
+                    Left clicking will open a tile, revealing what type of tile it is. Tiles may be either:</p>
+                        <ul>
+                            <li>A Mine (this ends the game)</li>
+                            <li>A Number</li>
+                            <li>Empty</li>
+                        </ul>
+                    <p>If a mine is revealed, you lose. If the tile you cleared is empty, the board will open up until it reaches number tiles in every direction. These "numbered tiles" indicate the number of mines adjacent to that specific tile and range from 1 to 8. The number of remaining mines are indicated by the numbers on the top left of the board. The top right is the timer and indicates how many seconds you have been working on this puzzle, but don't wory about that until you start getting the hang if the game! When you first load the page, the game defaults to hard mode, Under the game options, you will find medium, and easy. These levels scale both the size of the board, and the number of mines to be found. Hard is a 16 x 30 board with 99 mines. Medium is a 16 x 16 board with 40 mines. Easy is a 9 x 9 board with 10 mines and is a great place for beginners to start.</p></span>
         </div>
 
         <div class="folder" name="newFolder" style="top:325px; left:125px;">

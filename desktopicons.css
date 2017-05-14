@@ -177,4 +177,33 @@
 	border-color: #d3b100 transparent;
 }
 
-
+/****************************************************/
+.notepad {
+	position: absolute;
+	height:500px;
+	width:500px;
+    padding: 15px;
+	top:350px;
+	left:800px;
+	background: #fff;
+	border: 8px solid #c3c3c3;
+}
+.notepad:before {
+    content: attr(data-title);
+    position: absolute;
+    font-style: italic;
+    top: -30px;
+    left: -8px;
+    width: 500px;
+    background: #c3c3c3;
+    padding: 5px 65px 5px 25px;
+}
+.notepad:after {
+    content: 'X';
+    position: absolute;
+    background: #99f;
+    text-align: center;
+    padding: 5px;
+    top: -30px;
+    right: 0;
+}

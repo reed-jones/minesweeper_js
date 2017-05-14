@@ -893,4 +893,5 @@ $(function() {
   $('[name="newFolder"]').draggable();
   $("#wholeGame").draggable({ handle: "#titleBar" });
   $('#post-it').draggable();
+  $('.notepad').draggable();
 });
