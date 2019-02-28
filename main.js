@@ -20,43 +20,38 @@ var score;      // game score (bombs remaining)
 var seconds = document.getElementById("seconds");
 setInterval(myTimer, 1000);
 
+let GameEl = document.getElementById("newGame");
 // press smiley
-document.getElementById("newGame").addEventListener("mousedown", function(e) {
-        document.getElementById("newGame").style.backgroundPosition = "-28px -40px";
-});
+GameEl.addEventListener("mousedown", () => GameEl.style.backgroundPosition = "-28px -40px");
 
-document.getElementById("newGame").addEventListener("mouseup", function(e) {
-    newGame();
-});
+GameEl.addEventListener("mouseup", () => newGame());
 
 document.getElementById("custDiffBtn").onclick = custSize;
 
 var gameBoard = document.getElementById("gameBoard");
 
 // disable default right click menu (for flags to function as expected)
-gameBoard.oncontextmenu = function(){return false;};
+gameBoard.oncontextmenu = () => false;
 
 window.addEventListener("load",  newGame, false);
 
 var longtouch = false;
 var touchStart;
 
-
 gameBoard.ontouchstart = function(e) {
     longtouch = false;
-    touchStart = setTimeout(function(){
+    touchStart = setTimeout(function() {
         if ("vibrate" in navigator) {
             navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
             if (navigator.vibrate) {
-                navigator.vibrate([15,15,15]);
+                navigator.vibrate([15, 15, 15]);
             }
         }
-        rightMouseClick(e);  
+        rightMouseClick(e);
         longtouch = true;
     },500)
-    //e.preventDefault();
 }
-gameBoard.ontouchend = function(e) {
+gameBoard.ontouchend = e => {
     if(!longtouch){
         clearTimeout(touchStart);
         var clickX = parseInt(e.target.getAttribute("x"));
@@ -64,8 +59,8 @@ gameBoard.ontouchend = function(e) {
         if (boardArray[clickY][clickX].isRevealed){
             doubleClick(e);
         } else {
-            expandClick(e); 
-        }    
+            expandClick(e);
+        }
     }
     longtouch = false;
 
@@ -73,7 +68,7 @@ gameBoard.ontouchend = function(e) {
 
 };
 
-gameBoard.addEventListener("mousedown", function(e) {
+gameBoard.addEventListener("mousedown", e => {
     if(e.which == 1){
         leftMouse = true;
     }
@@ -84,7 +79,7 @@ gameBoard.addEventListener("mousedown", function(e) {
         rightMouse = true;
     }
     if(playing) {
-        document.getElementById("newGame").style.backgroundPosition = "-56px -40px";
+        GameEl.style.backgroundPosition = "-56px -40px";
     }
     showpress(e);
 });
@@ -104,11 +99,11 @@ gameBoard.addEventListener("mouseup", function(e) {
         leftMouse = false;
     }
     else if (rightMouse) {
-        
+
         rightMouse = false;
     }
     if (playing){
-        document.getElementById("newGame").style.backgroundPosition = "0px -40px";
+        GameEl.style.backgroundPosition = "0px -40px";
     }
 });
 
@@ -169,9 +164,9 @@ function newGame() {
     board.style.width = width * 18 + 'px';
     document.getElementById("gameHeader").style.width = (width * 18) + 6 + 'px';
 
-    document.getElementById("newGame").style.backgroundPosition = "0px -40px";
+    GameEl.style.backgroundPosition = "0px -40px";
     // equation of a line
-    document.getElementById("newGame").style.marginLeft = 0.48177*(width*18)-73 + 'px';
+    GameEl.style.marginLeft = 0.48177*(width*18)-73 + 'px';
     // 30 tiles = 190px
     // 16 tiles = 60px
     // tile size = 18px
@@ -198,30 +193,31 @@ function makeBoard() {
 }
 
 function addBombs(startX, startY) {
-	// load up random bomb positions
+    // load up random bomb positions
+    const rand = max => Math.floor(Math.random() * max);
     var bombs = 0;
     do
     {
-        var y = Math.floor(Math.random() * height);
-        var x = Math.floor(Math.random() * width);
+        var y = rand(height);
+        var x = rand(width);
         var t = boardArray[y][x];
-		
-		// check if its already a bomb, dont count it
+
+        // check if its already a bomb, dont count it
         if (t.isBomb) {
-			continue;
+            continue;
         }
-        
-		// if its too close to mouse pointer, dont count it
-		if ((startX - x === 0) && (startY - y === 0)) {
-			continue;
+
+        // if its too close to mouse pointer, dont count it
+        if ((startX - x === 0) && (startY - y === 0)) {
+            continue;
         }
-		
-		t.isBomb = true;
-		bombs++;
-		
-		// increment bombcount of nearby tiles
-		exploreNearbyTiles(countBombs, x,  y );
-        
+
+        t.isBomb = true;
+        bombs++;
+
+        // increment bombcount of nearby tiles
+        exploreNearbyTiles(countBombs, x, y);
+
     } while (bombs < maxBombs);
 }
 
@@ -233,11 +229,11 @@ function displayBoard() {
     document.getElementById("score").innerHTML = score;
 
     var board = document.getElementById('gameBoard');
-    
+
     var boardBuilder = [];
     var winCondition = 0;
     var h = boardArray.length;
-    // itterate throught the board drawing each tile
+    // iterate through the board drawing each tile
     for (var y = 0; y < h; y++)
     {
         var w = boardArray[y].length;
@@ -253,12 +249,12 @@ function displayBoard() {
                 state = "show" + tile.bombCount;
                 winCondition++;
             }
-            else if (tile.isGuessed) 
+            else if (tile.isGuessed)
                 state = "guess";
             else if (tile.isFlagged)
                 state = "flag";
             // add html to string
-            boardBuilder.push('<div class="tile ' + state + '" x="' + x + '" y="' + y + '""></div>'); 
+            boardBuilder.push('<div class="tile ' + state + '" x="' + x + '" y="' + y + '""></div>');
         }
     }
 
@@ -275,18 +271,13 @@ function displayBoard() {
 }
 /*************************** end of game setup ***************************/
 function custSize(){
-    // for(i = 0; i < document.getElementsByName("difficulty").length; i++) {
-    //     document.getElementsByName("difficulty")[i].checked = false;
-    // }
     var h = document.getElementById("height");
     var w = document.getElementById("width");
     var m = document.getElementById("mines");
 
-
     // validate length/width & push back validated sizes
     height = h.value = (h.value === "" || h.value < 1) ? 1 : parseInt(h.value);
     width = w.value = (w.value === "" || w.value < 9) ? 9 : parseInt(w.value);
-
 
     // validating minefield
     if (m.value > (h.value) * (w.value) - 1)
@@ -296,6 +287,7 @@ function custSize(){
     difficulty = 3;
     newGame();
 }
+
 /********************************** Mouse Events **************************************/
 /**
  * recursively search for bombs starting from the user selected tile
@@ -345,11 +337,11 @@ function expandClick(e) {
  * @param {EventTarget} mouse click event
  */
 function rightMouseClick(event) {
-    
+
     // get x and y coordinates of clicked tile
     var clickX = parseInt(event.target.getAttribute("x"));
     var clickY = parseInt(event.target.getAttribute("y"));
-    
+
     // clicked outside the game board?
     if(isNaN(clickX ||clickY)) return;
 
@@ -366,19 +358,14 @@ function rightMouseClick(event) {
     if(here.isRevealed) return;
 
     // rotate through rightMouse click flag states
-    if(here.isGuessed)  // question mark
-    {
+    if(here.isGuessed) { // question mark
         here.isGuessed = false;
         here.isFlagged = false;
-    }
-    else if (here.isFlagged) // mine flag
-    {
+    } else if (here.isFlagged) { // mine flag
         here.isGuessed = true;
         here.isFlagged = false;
         score++;
-    }
-    else // blank
-    {
+    } else { // blank
         here.isFlagged = true;
         here.isGuessed = false;
         score--;
@@ -390,6 +377,7 @@ function rightMouseClick(event) {
     return;     // cancel default menu
 }
 
+const getCoord = ({ target }, attr) => parseInt(target.getAttribute(attr));
 /**
  * if the correct number of flags have been selected around the clicked tile
  * then double click will reveal all remaining tiles
@@ -397,59 +385,60 @@ function rightMouseClick(event) {
  */
 function doubleClick(e){
     // get x and y coordinates of clicked tile
-    var x = parseInt(e.target.getAttribute("x"));
-    var y = parseInt(e.target.getAttribute("y"));
+    var x = getCoord(e, "x");
+    var y = getCoord(e, "y");
     var t = boardArray[y][x];
 
-    if(!t.isRevealed) return;
+    if(!t.isRevealed) {
+        return;
+    }
 
-    var flags = 0;
-    
-    flags  = exploreNearbyTiles(countFlags, x, y);
-            
-    if (flags != t.bombCount) return;
+    var flags = exploreNearbyTiles(countFlags, x, y);
+
+    if (flags != t.bombCount) {
+        return;
+    }
 
     // returns true true if dead
-    if(!exploreNearbyTiles(cleanTiles, x, y)){
+    if (!exploreNearbyTiles(cleanTiles, x, y)) {
         displayBoard();
-    }
-    else {
+    } else {
         multiDead(x, y);
     }
 }
 
 /**
  * adds css class to display tile as pressed down
- * @param {event} tile being pressed down 
+ * @param {event} tile being pressed down
  */
 function showpress(event){
-    // ensure it was the left mouse, and a game 
-    if (!playing) return;
+    // ensure it was the left mouse, and a game
+    if (!playing) {
+        return;
+    }
+
     unpressTiles();
+
     var e = event.target;
-    var x = parseInt(e.getAttribute("x"));
-    var y = parseInt(e.getAttribute("y"));
+    var x = getCoord(e,"x");
+    var y = getCoord(e, "y");
     var b = boardArray[y][x];
-    if(leftMouse && rightMouse) {
-        if(b.isGuessed && !b.isRevealed){
+
+    if (leftMouse && rightMouse) {
+        if (b.isGuessed && !b.isRevealed) {
             e.classList.add("guessPress");
-        }
-        else if (!b.isRevealed){
+        } else if (!b.isRevealed) {
             e.classList.add("pressed");
         }
+
         exploreNearbyTiles(pressSquare,x, y);
-    }
-    else if (leftMouse && !b.isRevealed){
-        if(b.isGuessed){
+    } else if (leftMouse && !b.isRevealed) {
+        if (b.isGuessed) {
             e.classList.add("guessPress");
-        }
-        else{
+        } else {
             e.classList.add("pressed");
         }
     }
-    // else if (rightMouse && !b.isRevealed){
-    //     e.classList.add("flagPress");
-    // }
 }
 
 /**
@@ -458,7 +447,6 @@ function showpress(event){
 function unpressTiles(){
     var pressed = document.getElementsByClassName("tile");
     for (var i = 0; i < pressed.length; i++) {
-        //if (event.target != tiles[i])
         pressed[i].classList.remove("pressed");
         pressed[i].classList.remove("flagPress");
         pressed[i].classList.remove("guessPress");
@@ -469,15 +457,17 @@ function pressSquare(x, y){
         var cc = gameBoard.querySelector('[x="' + x + '"][y="' + y + '"]');
         var t = boardArray[y][x];
 
-        if (t.isRevealed) return;
-
-        if(t.isGuessed){
-            cc.classList.add("guessPress");
+        if (t.isRevealed) {
+            return;
         }
-        else{
+
+        if (t.isGuessed) {
+            cc.classList.add("guessPress");
+        } else {
             cc.classList.add("pressed");
         }
 }
+
 /*********************************end of mouse events ****************************/
 
 /************************* tile exploration and helper functions *****************/
@@ -485,16 +475,16 @@ function pressSquare(x, y){
  * recursively call fundBombs in every direction from given tile
  * @param {Object.<number, number>}  coordinates of the given tile
  */
-function exploreNearbyTiles(func, Xaxis, Yaxis){
+function exploreNearbyTiles(func, Xaxis, Yaxis) {
     var result = 0;
-    for (var x = Xaxis - 1; x <= Xaxis + 1; x++){
-        for(var y = Yaxis - 1; y <= Yaxis + 1; y++){
+    for (var x = Xaxis - 1; x <= Xaxis + 1; x++) {
+        for (var y = Yaxis - 1; y <= Yaxis + 1; y++) {
             // dont process center tile
-            if (x == Xaxis && y == Yaxis){
+            if (x == Xaxis && y == Yaxis) {
                 continue;
             }
             // ensure tile is within boarder
-            if (x < 0 || y < 0 || x >= width || y >= height){
+            if (x < 0 || y < 0 || x >= width || y >= height) {
                 continue;
             }
             // save return value; but leave rest of error checking to function
@@ -507,7 +497,7 @@ function exploreNearbyTiles(func, Xaxis, Yaxis){
 /**
  * increases current tiles bomb count. Is called on every tile surrounding a bomb during
  * board creation.
- * @param {Object.<number, number>} accepts X and Y points of a tile 
+ * @param {Object.<number, number>} accepts X and Y points of a tile
  */
 function countBombs(x, y){
     boardArray[y][x].bombCount++;
@@ -519,23 +509,20 @@ function countBombs(x, y){
  * @param {Object.<number, number>}  coordinates of the given tile
  */
 function findBombs(x, y) {
-    
     var t = boardArray[y][x];
-    
-    if (t.isBomb) return;
 
-    // if its already been revealed
-    if(t.isRevealed) return;
-
-    // if its got a safety flag on
-    if (t.isFlagged) return;
+    if (t.isBomb || t.isRevealed || t.isFlagged) {
+        return;
+    }
 
     // survived the gauntlet. Reveal the tile.
-    t.isRevealed = true;  
+    t.isRevealed = true;
 
     // dont explore past tiles with a bomb count
-    if(t.bombCount !== 0) return;
-        
+    if(t.bombCount !== 0) {
+        return;
+    }
+
     // if no bombs found, explore outwards in every direction
     exploreNearbyTiles(findBombs, x, y);
 }
@@ -545,7 +532,9 @@ function findBombs(x, y) {
  * @param {Object.<number, number>} x/y point of a tile
  */
 function revealAdjacent(x, y){
-    if (boardArray[y][x].isFlagged) return;
+    if (boardArray[y][x].isFlagged) {
+        return;
+    }
 
     boardArray[y][x].isRevealed = true;
 }
@@ -567,19 +556,22 @@ function countFlags(x, y){
 
 /**
  * reveals tiles. Used so that double click begins recursion also
- * @param {Object.<number, number>} x/y point of a tile 
+ * @param {Object.<number, number>} x/y point of a tile
  */
-function cleanTiles(x, y){
+function cleanTiles(x, y) {
 
-    if(boardArray[y][x].isFlagged) return 0;
+    if (boardArray[y][x].isFlagged) {
+        return 0;
+    }
 
-    if(boardArray[y][x].isBomb) return 1;
+    if (boardArray[y][x].isBomb) {
+        return 1;
+    }
 
     // begin recursion from here
     findBombs(x, y);
 
     return 0;
-    
 }
 
 /******************** endgame conditions ***********************/
@@ -588,15 +580,15 @@ function cleanTiles(x, y){
  */
 function winGame(){
     var bombsFound = width * height;
-    for(var y = 0; y < height; ++y) {
+    for (var y = 0; y < height; ++y) {
         for (var x = 0; x < width; ++x) {
-            if (boardArray[y][x].isRevealed)
+            if (boardArray[y][x].isRevealed) {
                 bombsFound--;
+            }
         }
     }
 
-    if(bombsFound != maxBombs)
-    {
+    if(bombsFound != maxBombs) {
         alert("Quit trying to cheat! ;)");
         return;
     }
@@ -609,17 +601,15 @@ function winGame(){
     var boardBuilder = '';
     var h = boardArray.length;
 
-    for (var y = 0; y < h; y++)
-    {
+    for (var y = 0; y < h; y++) {
         var w = boardArray[y].length;
-        for (var x = 0; x < w; x++)
-        {
+        for (var x = 0; x < w; x++) {
             var tile = boardArray[y][x];
 
             // ensure that if only mines are remaining, they all get a flag.
             var state = tile.isRevealed ? "show" + tile.bombCount : "flag";
-            
-            boardBuilder += '<div class="tile ' + state + '" x="' + x + '" y="' + y + '""></div>'; 
+
+            boardBuilder += '<div class="tile ' + state + '" x="' + x + '" y="' + y + '""></div>';
         }
     }
 
@@ -645,34 +635,30 @@ function gameOver(X, Y) {
     var board = document.getElementById('gameBoard');
     var boardBuilder = '';
 
-    for (var y = 0; y < boardArray.length; y++)
-    {
+    for (var y = 0; y < boardArray.length; y++) {
         var row = boardArray[y];
-        for (var x = 0; x < row.length; x++)
-        {
+
+        for (var x = 0; x < row.length; x++) {
             var tile = boardArray[y][x];
             var state = "";
 
             // if this was the tile that killed you
-            if (x == X && y == Y)
+            if (x == X && y == Y) {
                 state = "killer";
-            
-            // show tiles you have already revealed
-            else if(tile.isRevealed)
+            } else if (tile.isRevealed) { // show tiles you have already revealed
                 state = "show" + tile.bombCount;
-            // good flagging!
-            else if (tile.isFlagged && tile.isBomb) 
+            } else if (tile.isFlagged && tile.isBomb) { // good flagging!
                 state = "flag";
-            // thats a bomb...
-            else if (tile.isBomb)
+            } else if (tile.isBomb) { // thats a bomb...
                 state = "bomb";
-            // why you flagging non-bombs?
-            else if (tile.isFlagged)
+            } else if (tile.isFlagged) { // why you flagging non-bombs?
                 state = "badGuess";
-            
-            boardBuilder += '<div class="tile ' + state + '" x="' + x + '" y="' + y + '""></div>'; 
+            }
+
+            boardBuilder += '<div class="tile ' + state + '" x="' + x + '" y="' + y + '""></div>';
         }
     }
+
     board.innerHTML = boardBuilder;
 
     document.getElementById("newGame").style.backgroundPosition = "-84px -40px";
@@ -683,9 +669,9 @@ function gameOver(X, Y) {
  * @param {number} X axis
  * @param {number} Y axis
  */
-function multiDead(X,Y){
+function multiDead(X, Y){
     // reveal all adjacent tiles.
-    exploreNearbyTiles(revealAdjacent,X, Y);
+    exploreNearbyTiles(revealAdjacent, X, Y);
 
     playing = false;
     paused = true;
@@ -693,34 +679,28 @@ function multiDead(X,Y){
     var board = document.getElementById('gameBoard');
     var boardBuilder = '';
 
-    for (var y = 0; y < boardArray.length; y++)
-    {
+    for (var y = 0; y < boardArray.length; y++) {
         var row = boardArray[y];
-        for (var x = 0; x < row.length; x++)
-        {
+        for (var x = 0; x < row.length; x++) {
             var tile = boardArray[y][x];
             var state = "";
-            
+
             if ((Math.abs(x - X) <= 1 && Math.abs(y - Y) <= 1) && boardArray[y][x].isBomb && !boardArray[y][x].isFlagged) {
                 state = "killer";
-            }
-            
-            // show tiles you have already revealed
-            else if(tile.isRevealed)
+            } else if (tile.isRevealed) { // show tiles you have already revealed
                 state = "show" + tile.bombCount;
-            // good flagging!
-            else if (tile.isFlagged && tile.isBomb) 
+            } else if (tile.isFlagged && tile.isBomb) { // good flagging!
                 state = "flag";
-            // thats a bomb...
-            else if (tile.isBomb)
+            } else if (tile.isBomb) { // thats a bomb...
                 state = "bomb";
-            // why you flagging non-bombs?
-            else if (tile.isFlagged)
+            } else if (tile.isFlagged) { // why you flagging non-bombs?
                 state = "badGuess";
-            
-            boardBuilder += '<div class="tile ' + state + '" x="' + x + '" y="' + y + '""></div>'; 
+            }
+
+            boardBuilder += '<div class="tile ' + state + '" x="' + x + '" y="' + y + '""></div>';
         }
     }
+
     board.innerHTML = boardBuilder;
 
     document.getElementById("newGame").style.backgroundPosition = "-84px -40px";
@@ -731,13 +711,13 @@ function multiDead(X,Y){
 /**
  * simple timer function to keep track of gametime
  */
-function myTimer(){
-    if(time >= 999)
-    {
+function myTimer() {
+    if (time >= 999) {
         seconds.innerHTML = time = 999;
         return;
     }
-    if (!paused){
+
+    if (!paused) {
         seconds.innerHTML = ++time;
     }
 }
@@ -765,11 +745,11 @@ function getScores() {
         }
     });
 }
- 
+
 function updatePostIt(title, dif){
     var hs = title + "<br>";
     $.each(dif, function(i, field){
-                hs +=field.Name + " ~ " + field.Time + " seconds<br>";
+                hs += field.Name + " ~ " + field.Time + " seconds<br>";
             });
     $('#highScores').html(hs);
 }
@@ -777,9 +757,9 @@ function updatePostIt(title, dif){
 
 /**
  * posts score to database after win
- * @param {string} name 
- * @param {number} time 
- * @param {number} 0, 1, or 2 {easy, medium, hard} 
+ * @param {string} name
+ * @param {number} time
+ * @param {number} 0, 1, or 2 {easy, medium, hard}
  */
 function postScore(name, time, difficulty) {
     $.post("addHighScores.php", {
@@ -796,16 +776,13 @@ function postScore(name, time, difficulty) {
 function addScores() {
     var difficulty = 0;
 
-    if(height == 9 && width == 9 && maxBombs == 10) {
+    if (height == 9 && width == 9 && maxBombs == 10) {
         difficulty = 0;
-    }
-    else if (height == 16 && width == 16 && maxBombs == 40) {
+    } else if (height == 16 && width == 16 && maxBombs == 40) {
         difficulty = 1;
-    }
-    else if (height == 16 && width == 30 && maxBombs == 99) {
+    } else if (height == 16 && width == 30 && maxBombs == 99) {
         difficulty = 2;
-    }
-    else {
+    } else {
         //console.log("Not playing default difficulty");
         return;
     }
@@ -813,7 +790,7 @@ function addScores() {
     //time = parseInt(seconds.innerHTML);
     var s = prompt("Congratulations, you finished in " + time + " seconds!\nEnter your name if you wish to be added to the High score table:");
 
-    if (s !== null){
+    if (s !== null) {
         postScore(s, time, difficulty);
     }
 }
@@ -838,7 +815,7 @@ var gameMenu = [{
             difficulty = 0;
             newGame();
         }
-        
+
     }, {
         name: 'Medium',
         // img: 'images/update.png',
@@ -850,7 +827,7 @@ var gameMenu = [{
             difficulty = 1;
             newGame();
         }
-        
+
     },{
         name: 'Hard',
         // img: 'images/update.png',
@@ -871,7 +848,7 @@ var gameMenu = [{
             $('#custDiff').collapse('show');
         }
     }];
-     
+
 //Calling context menu
 $('#gameMenu').contextMenu(gameMenu);
 
@@ -880,10 +857,10 @@ var helpMenu = [{
         // img: 'images/create.png',
         title: 'About',
         fun: function () {
-            $('#instructionsModal').modal('show')  
+            $('#instructionsModal').modal('show')
         }
     }];
-     
+
 //Calling context menu
 $('#helpMenu').contextMenu(helpMenu);
 /********************** End Of Menus *********************************/
